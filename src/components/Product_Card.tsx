@@ -17,6 +17,7 @@ export default function ProductCard(props: ProductList): React.JSX.Element {
             price: props.price,
             rating: { count: props.rating.count, rate: props.rating.rate },
             title: props.title,
+            quantity: props.quantity,
          })
       );
    };

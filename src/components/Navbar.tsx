@@ -30,7 +30,7 @@ export default function Navbar(): React.JSX.Element {
                </div>
             </Link>
             <Link to="/">
-               <div className="hover:outline hover:outline-1 hover:outline-white h-[98%] rounded-sm px-2.5 flex items-center justify-center text-sm font-medium min-w-max">
+               <div className="hover:outline hover:outline-1 hover:outline-white h-[98%] rounded-sm px-2.5 items-center justify-center text-sm font-medium min-w-max hidden sm:flex">
                   Kindle Books
                </div>
             </Link>
@@ -55,16 +55,11 @@ export default function Navbar(): React.JSX.Element {
                   Coupons
                </div>
             </Link>
-            <Link to="/">
-               <div className="hover:outline hover:outline-1 hover:outline-white h-[98%] rounded-sm px-2.5 hidden xl:flex items-center justify-center text-sm font-medium min-w-max">
-                  Gift Cards
-               </div>
-            </Link>
          </div>
 
          <Link
             to="/"
-            className="hover:outline hover:outline-1 hover:outline-white h-[98%] rounded-sm pr-6 text-2xl flex-1 text-end min-w-max"
+            className="hover:outline hover:outline-1 hover:outline-white h-[98%] rounded-sm pr-6 text-2xl text-end min-w-max hidden flex-1 xl:block"
          >
             <span className="font-bold">Road House </span>
             <span>- New movie</span>

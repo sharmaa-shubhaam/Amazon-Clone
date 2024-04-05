@@ -9,4 +9,5 @@ export interface ProductList {
       rate: number;
       count: number;
    };
+   quantity: number;
 }

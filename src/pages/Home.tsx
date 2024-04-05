@@ -26,6 +26,7 @@ export default function Home(): React.JSX.Element {
                   rating={{ rate: items.rating.rate, count: items.rating.count }}
                   title={items.title}
                   key={items.id}
+                  quantity={1}
                />
             ))}
          </div>

@@ -23,7 +23,7 @@ export default function Header(): React.JSX.Element {
                      </figure>
                   </Link>
                </div>
-               <div className="flex items-end px-1.5 pr-2.5 py-2 hover:outline hover:outline-1 hover:outline-white rounded-sm cursor-pointer space-x-[1px] min-w-max">
+               <div className="hidden lg:flex items-end px-1.5 pr-2.5 py-2 hover:outline hover:outline-1 hover:outline-white rounded-sm cursor-pointer space-x-[1px] min-w-max">
                   <HiOutlineLocationMarker className="text-xl mb-[2px] text-white" />
                   <div className="flex items-center flex-col -space-y-1">
                      <span className="text-xs text-gray-300">Deliver to shubham</span>
@@ -31,8 +31,9 @@ export default function Header(): React.JSX.Element {
                   </div>
                </div>
             </div>
-            <div className="flex-1 px-3">
-               <div className="flex rounded overflow-hidden min-w-96">
+
+            <div className="hidden md:block flex-1 px-3">
+               <div className="flex rounded overflow-hidden min-w-72">
                   <div className="flex items-center pl-2.5 pr-1 bg-gray-200 space-x-1 cursor-pointer text-gray-700 border-r border-gray-300 hover:bg-gray-300">
                      <span className="text-xs">All</span>
                      <IoMdArrowDropdown />
@@ -47,9 +48,10 @@ export default function Header(): React.JSX.Element {
                   </div>
                </div>
             </div>
+
             <nav className="flex items-center">
                <Link to="/">
-                  <div className="flex item-end hover:outline hover:outline-1 hover:outline-white cursor-pointer pt-5 pb-2 px-3 rounded-sm min-w-max space-x-1">
+                  <div className="hidden lg:flex item-end hover:outline hover:outline-1 hover:outline-white cursor-pointer pt-5 pb-2 px-3 rounded-sm min-w-max space-x-1">
                      <ReactCountryFlag countryCode="CA" svg className="w-8 h-8" title="CA" />
                      <div className="flex items-end">
                         <span className="text-sm font-bold">EN</span>

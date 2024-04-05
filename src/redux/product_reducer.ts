@@ -7,7 +7,7 @@ export const fakeStoreApi = createAsyncThunk("product/fetch?limit=15", async () 
    try {
       const { data } = await axios({
          method: "GET",
-         url: "https://fakestoreapi.com/products?limit=15",
+         url: "https://fakestoreapi.com/products?limit=10",
          timeout: 10000,
       });
       return data as ProductList[];
