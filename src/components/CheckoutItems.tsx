@@ -1,13 +1,27 @@
 import React from "react";
 import { useAppDispatch } from "../redux/hooks";
 import { removeItem, updateItem } from "../redux/addToCart_reducer";
-import { ProductList } from "../interfaces/product_lits";
+import { ProductList } from "../interfaces/product_list";
 import { Link } from "react-router-dom";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 
 export default function CheckoutItems(items: ProductList): React.JSX.Element {
    const dispatch = useAppDispatch();
-   const deleteItem = () => dispatch(removeItem({ id: items.id }));
+
+   // Delete item from add to cart.
+   const deleteItem = (): void => {
+      dispatch(removeItem({ id: items.id }));
+   };
+
+   // add product quantity.
+   const addQuantity = (): void => {
+      dispatch(updateItem({ id: items.id, type: "ADD" }));
+   };
+
+   // subtract product quantity.
+   const subQuantity = (): void => {
+      dispatch(updateItem({ id: items.id, type: "SUB" }));
+   };
 
    return (
       <div className="flex justify-between p-4 pt-6 border-b">
@@ -42,19 +56,11 @@ export default function CheckoutItems(items: ProductList): React.JSX.Element {
             </div>
             <div className="pt-4 flex">
                <div className="flex items-center space-x-3 pr-5">
-                  <div
-                     className="border p-0.5 rounded cursor-pointer active:bg-gray-200"
-                     onClick={() => {
-                        dispatch(updateItem({ id: items.id, type: "SUB" }));
-                     }}
-                  >
+                  <div className="border p-0.5 rounded cursor-pointer active:bg-gray-200" onClick={subQuantity}>
                      <AiOutlineMinus className="text-sm" />
                   </div>
                   <span className="text-sm">{items.quantity}</span>
-                  <div
-                     className="border p-0.5 rounded cursor-pointer active:bg-gray-200"
-                     onClick={() => dispatch(updateItem({ id: items.id, type: "ADD" }))}
-                  >
+                  <div className="border p-0.5 rounded cursor-pointer active:bg-gray-200" onClick={addQuantity}>
                      <AiOutlinePlus className="text-sm" />
                   </div>
                </div>

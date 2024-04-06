@@ -1,5 +1,5 @@
 import React from "react";
-import { ProductList } from "../interfaces/product_lits";
+import { ProductList } from "../interfaces/product_list";
 import { FaStar } from "react-icons/fa";
 import { useAppDispatch } from "../redux/hooks";
 import { addToCart } from "../redux/addToCart_reducer";

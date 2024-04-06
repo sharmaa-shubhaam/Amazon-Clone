@@ -5,18 +5,46 @@ import { Link } from "react-router-dom";
 import { IoIosInformationCircle } from "react-icons/io";
 import CheckoutItems from "../components/CheckoutItems";
 import { loadStripe } from "@stripe/stripe-js";
+import axios from "axios";
 
 export default function Checkout(): React.JSX.Element {
    const addToCart = useAppSelector(addToCart_list);
    const [total, setTotal] = useState<number>(0);
 
-   const ProceedToCheckout = async () => {};
+   // Create the checkout session.
+   const ProceedToCheckout = async () => {
+      try {
+         // Loading the stripe with Public Key of stripe.
+         if (!import.meta.env.VITE_STRIPE_PUBLIC_KEY) throw new Error("No Stripe Public Key.");
+         const stripe = await loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
 
+         // create stripe checkout session, with the backend api.
+         if (!import.meta.env.VITE_SERVER_URL) throw new Error("No Server Url.");
+         const stripeCheckoutSession = await axios({
+            method: "POST",
+            url: `${import.meta.env.VITE_SERVER_URL}/stripe-checkout`,
+            data: addToCart,
+            headers: {
+               "Content-Type": "application/json",
+            },
+         });
+
+         // once the backend post axios api successful.
+         // redirect to stripe checkout page with the session id got from backend.
+         await stripe?.redirectToCheckout({
+            sessionId: stripeCheckoutSession.data.id,
+         });
+      } catch (error: any) {
+         console.log("Debug Proceed to Checkout Error: >>>>>>>>>>>" + error);
+      }
+   };
+
+   // update total price when ever the addToCart store update.
    useEffect(() => {
       (function () {
          const sum = addToCart
             .map((items) => {
-               return items.price;
+               return items.price * items.quantity;
             })
             .reduce((oldValue, newValue) => {
                return oldValue + newValue;
@@ -24,7 +52,6 @@ export default function Checkout(): React.JSX.Element {
 
          setTotal(sum);
       })();
-      console.log(addToCart);
    }, [addToCart]);
 
    return (

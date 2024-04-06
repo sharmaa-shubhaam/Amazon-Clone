@@ -1,18 +1,12 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { RootState } from "./hooks";
-import { ProductList } from "../interfaces/product_lits";
-
-interface AddMoreToProductList {
-   quantity: number;
-}
-
-type AddToCartProductList = ProductList & AddMoreToProductList;
+import { ProductList } from "../interfaces/product_list";
 
 export const addToCart_reducer = createSlice({
    name: "addToCart",
-   initialState: [] as AddToCartProductList[],
+   initialState: [] as ProductList[],
    reducers: {
-      addToCart: (state, action: PayloadAction<AddToCartProductList>) => {
+      addToCart: (state, action: PayloadAction<ProductList>) => {
          return [...state, action.payload];
       },
       removeItem: (state, action: PayloadAction<{ id: number }>) => {

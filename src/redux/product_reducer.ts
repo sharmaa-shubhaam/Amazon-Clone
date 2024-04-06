@@ -1,13 +1,13 @@
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { RootState } from "./hooks";
-import { ProductList } from "../interfaces/product_lits";
+import { ProductList } from "../interfaces/product_list";
 import axios from "axios";
 
-export const fakeStoreApi = createAsyncThunk("product/fetch?limit=15", async () => {
+export const fakeStoreApi = createAsyncThunk("product/fetch?limit=10", async () => {
    try {
       const { data } = await axios({
          method: "GET",
-         url: "https://fakestoreapi.com/products?limit=10",
+         url: "https://fakestoreapi.com/products?limit=9",
          timeout: 10000,
       });
       return data as ProductList[];
